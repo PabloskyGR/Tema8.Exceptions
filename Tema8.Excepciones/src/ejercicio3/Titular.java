@@ -5,23 +5,42 @@ public class Titular {
 	private String DNI;
 	private String nombre;
 	private String apellidos;
-	private String telefono;
+	private int telefono;
 
-	public Titular(String DNI, String nombre, String apellidos, String telefono) {
-		this.DNI = DNI;
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.telefono = telefono;
+	public Titular(String DNI, String nombre, String apellidos, int telefono)
+			throws DniInvalidoException, NombreInvalidoException {
+		if (DNI == null || DNI.equals("")) {
+			throw new DniInvalidoException();
+		} else {
+			this.DNI = DNI;
+		}
+
+		if (nombre == null || nombre.equals("")) {
+			throw new NombreInvalidoException();
+		} else {
+			this.nombre = nombre;
+		}
+
+		if (apellidos != null && !apellidos.equals("")) {
+			this.apellidos = apellidos;
+		}
+
+		if (telefono > 0) {
+			this.telefono = telefono;
+		}
 	}
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		Titular titular = (Titular) o;
-		return DNI.equals(titular.DNI);
+		boolean res = false;
+
+		Titular t = (Titular) o;
+
+		if (this.DNI.equals(t.DNI)) {
+			res = true;
+		}
+
+		return res;
 	}
 
 }
