@@ -4,17 +4,32 @@ public class HoraExacta extends Hora {
 
 	private int segundo;
 
-	public HoraExacta(int hora, int minuto, int segundo) {
+	public HoraExacta() {
+
+	}
+
+	public HoraExacta(int hora, int minuto, int segundo)
+			throws NegativeHourException, NegativeMinuteException, NegativeSecondException {
+
 		super(hora, minuto);
-		if (segundo >= 0 && segundo < 60) {
+
+		if (segundo < 0) {
+			throw new NegativeSecondException();
+		} else if (segundo > 60) {
+			System.err.println("Error: Segundos fuera de rango");
+		} else {
 			this.segundo = segundo;
 		}
 	}
 
-	public boolean setSegundos(int valor) {
+	public boolean setSegundos(int valor) throws NegativeSecondException {
 		boolean res = false;
 
-		if (valor >= 0 && valor < 60) {
+		if (segundo < 0) {
+			throw new NegativeSecondException();
+		} else if (segundo > 60) {
+			System.err.println("Error: Segundos fuera de rango");
+		} else {
 			this.segundo = valor;
 			res = true;
 		}

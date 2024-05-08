@@ -5,31 +5,53 @@ public class Hora {
 	protected int hora;
 	protected int minuto;
 
-	public Hora(int hora, int minuto) {
-		if (hora >= 0 && hora < 24) {
+	public Hora() {
+
+	}
+
+	public Hora(int hora, int minuto) throws NegativeHourException, NegativeMinuteException {
+		if (hora < 0) {
+			throw new NegativeHourException();
+		} else if (hora > 24) {
+			System.err.println("Error: Hora fuera de rango");
+		} else {
 			this.hora = hora;
 		}
-		if (minuto > 0 && minuto < 60) {
+
+		if (minuto < 0) {
+			throw new NegativeMinuteException();
+		} else if (minuto > 60) {
+			System.err.println("Error: Minutos fuera de rango");
+		} else {
 			this.minuto = minuto;
 		}
 
 	}
 
-	public boolean setMinutos(int valor) {
+	public boolean setMinutos(int valor) throws NegativeMinuteException {
 		boolean res = false;
 
-		if (valor >= 0 && valor < 60) {
+		if (minuto < 0) {
+			throw new NegativeMinuteException();
+		} else if (minuto > 60) {
+			System.err.println("Error: Minutos fuera de rango");
+		} else {
 			this.minuto = valor;
 			res = true;
 		}
 
 		return res;
+
 	}
 
-	public boolean setHoras(int valor) {
+	public boolean setHoras(int valor) throws NegativeHourException {
 		boolean res = false;
 
-		if (valor >= 0 && valor < 24) {
+		if (hora < 0) {
+			throw new NegativeHourException();
+		} else if (hora > 24) {
+			System.err.println("Error: Hora fuera de rango");
+		} else {
 			this.hora = valor;
 			res = true;
 		}

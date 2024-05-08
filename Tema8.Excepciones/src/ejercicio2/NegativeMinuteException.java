@@ -2,7 +2,8 @@ package ejercicio2;
 
 public class NegativeMinuteException extends Exception {
 
-	public String toString() {
+	@Override
+	public String getMessage() {
 
 		return "NegativeMinuteException: Los minutos son negativos";
 

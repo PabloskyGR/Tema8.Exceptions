@@ -2,7 +2,8 @@ package ejercicio2;
 
 public class NegativeSecondException extends Exception {
 
-	public String toString() {
+	@Override
+	public String getMessage() {
 
 		return "NegativeSecondException: Los segundos son negativos";
 	}
